@@ -1,17 +1,5 @@
 Feature: Languages in MARS QA Application
 
-Scenario: User can see language level and add new buttons in the language tab
-Given the user is logged in 
-And they are on the user profile page
-When they navigate to the language tab
-Then they should see the language level displayed
-And they should see the "Add New" button
-When they click the "Add New" button
-Then a new language entry form should appear
-And they should be able to enter language details
-When they save the new language entry
-Then the language level should be updated
-And the new language should be added to the list
 
 Scenario: Verify the UI elements in Languages section
 Given I am on the Mars home page
@@ -25,8 +13,9 @@ Then The language English gets added to my profile
 
 Scenario Outline: User adds 4 languages to the profile
  Given User is logged into MarsQA application
- When User adds new language including '<LanguageName>','<LanguageLevel>'
- Then Newly added language is displaying including '<LanguageName>','<LanguageLevel>'
+ When User adds new language name '<LanguageName>'
+	And User selects the level '<LanguageLevel>'
+ Then Newly added language is displaying as '<LanguageName>','<LanguageLevel>'
  Examples: 
  | LanguageName | LanguageLevel    |
  | English      | Basic            |
@@ -34,18 +23,19 @@ Scenario Outline: User adds 4 languages to the profile
  | Hindi        | Fluent           |
  | Telugu       | Native/Bilingual |
 
+
  Scenario: User can't add more than four languages 
   Given User is logged into MarsQA application
   And User deletes all existing languages
   When User adds four new languages
   Then User is not able to add any more languages because Add New button is not visible
 
-  Scenario: User edits newly added language 
+  Scenario: User edits an existing language entry
   Given User is logged into MarsQA application
-  When User edits newly added language
-  Then Language is edited successfully
+  When User edits an existing language entry
+  Then Language entry has been edited successfully
 
-  Scenario: User deletes newly added language
+  Scenario: User deletes all existing languages
   Given User is logged into MarsQA application
   When User deletes all existing languages
   Then All Languages are deleted successfully
@@ -63,7 +53,7 @@ Scenario Outline: User adds 4 languages to the profile
   When User tries to add same language twice
   Then Error is displayed and user is not able to add duplicate language
 
-  Scenarios: User 
+
 
 
 
